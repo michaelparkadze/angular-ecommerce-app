@@ -1,20 +1,45 @@
-<header>
-  <h3>Hello from app</h3>
-  <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Libero voluptate
-    pariatur neque iste facere consectetur repellat, rerum culpa laboriosam non
-    aperiam omnis quod! Enim magni ullam itaque voluptate cumque explicabo!
-  </p>
+<header class="header-container">
+  <div class="header-container__left">
+    <button (click)="onClickFunc()">Menu</button>
+  </div>
+  <div class="header-container__middle">Eccom</div>
+  <div class="header-container__right">
+    <button>User</button>
+  </div>
+</header>
+
+<div class="nav-container" *ngIf="!isMobile">
   <nav>
     <ul>
-      <li><a routerLink="/">Home</a></li>
-      <li><a routerLink="/login">Login</a></li>
-      <li><a routerLink="/register">Register</a></li>
-      <li><a routerLink="/profile">Profile</a></li>
-      <li><a routerLink="/cart">Cart</a></li>
-      <li><a routerLink="/product/1">Product</a></li>
-      <li><a routerLink="/checkout">Checkout</a></li>
-      <li><a routerLink="/order-history">Order History</a></li>
+      <li routerLink="/">Home</li>
+      <li routerLink="/login">Login</li>
+      <li routerLink="/register">Register</li>
+      <li routerLink="/profile">Profile</li>
+      <li routerLink="/cart">Cart</li>
+      <li routerLink="/product/1">Product</li>
+      <li routerLink="/checkout">Checkout</li>
+      <li routerLink="/order-history">Order History</li>
     </ul>
   </nav>
-</header>
+</div>
+
+<div [className]="isMenuOpen ? 'side-menu show' : 'side-menu'">
+  <h2>Example menu</h2>
+  <nav>
+    <ul>
+      <li routerLink="/" (click)="onClickFunc()">Home</li>
+      <li routerLink="/login" (click)="onClickFunc()">Login</li>
+      <li routerLink="/register" (click)="onClickFunc()">Register</li>
+      <li routerLink="/profile" (click)="onClickFunc()">Profile</li>
+      <li routerLink="/cart" (click)="onClickFunc()">Cart</li>
+      <li routerLink="/product/1" (click)="onClickFunc()">Product</li>
+      <li routerLink="/checkout" (click)="onClickFunc()">Checkout</li>
+      <li routerLink="/order-history" (click)="onClickFunc()">Order History</li>
+    </ul>
+  </nav>
+</div>
+
+<div
+  [className]="isMenuOpen ? 'darken-background enable' : 'darken-background'"
+  (click)="onClickFunc()"
+></div>
