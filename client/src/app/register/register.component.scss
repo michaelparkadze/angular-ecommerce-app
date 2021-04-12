@@ -6,6 +6,7 @@
     margin: 0 auto;
     border-radius: 12px;
     background-color: #fff;
+    border: 1px solid #ccc;
     > h2 {
       text-align: center;
       margin-bottom: 32px;
@@ -44,7 +45,7 @@
 @media screen and (min-width: 768px) {
   .register-container {
     padding: 90px 16px 240px;
-    background-color: #f5f5f8;
+    // background-color: #f5f5f8;
     .form-container {
       padding: 36px;
     }
