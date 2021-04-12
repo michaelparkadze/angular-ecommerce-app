@@ -1,0 +1,65 @@
+.register-container {
+  padding: 24px 16px;
+  .form-container {
+    max-width: 475px;
+    padding: 24px 16px;
+    margin: 0 auto;
+    border-radius: 12px;
+    background-color: #fff;
+    > h2 {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    > form {
+      > .🤪 {
+        display: grid;
+        grid-column-gap: 12px;
+        grid-template-columns: 1fr 1fr;
+        margin-bottom: 24px;
+      }
+      > .✅ {
+        margin-bottom: 32px;
+        > .checkbox-container {
+          display: flex;
+          align-items: center;
+          margin-bottom: 12px;
+          > input {
+          }
+          > span {
+            font-size: 0.75rem;
+          }
+        }
+      }
+      > .cta-container {
+        text-align: center;
+        > button {
+          padding: 16px 30px;
+          border-radius: 50px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .register-container {
+    padding: 90px 16px 240px;
+    background-color: #f5f5f8;
+    .form-container {
+      padding: 36px;
+    }
+  }
+}
+
+.input-container {
+  margin-bottom: 12px;
+  > label {
+    font-size: 0.875rem;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  > input {
+    padding: 10px 12px;
+    width: 100%;
+  }
+}
