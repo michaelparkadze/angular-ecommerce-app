@@ -1,0 +1,47 @@
+.profile-container {
+  padding: 24px 16px;
+  .form-container {
+    max-width: 475px;
+    padding: 24px 16px;
+    margin: 0 auto;
+    > h2 {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    > form {
+      .input-container {
+        margin-bottom: 12px;
+        > label {
+          font-size: 0.875rem;
+          display: inline-block;
+          margin-bottom: 6px;
+        }
+        > input {
+          padding: 10px 12px;
+          width: 100%;
+        }
+      }
+      .cta-container {
+        margin-top: 24px;
+        > button {
+          padding: 16px 30px;
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .profile-container {
+    padding: 90px 16px 240px;
+    .form-container {
+      padding: 36px;
+      border: 1px solid #ccc;
+      border-radius: 12px;
+      //   > h2 {
+      //     text-align: center;
+      //   }
+    }
+  }
+}
