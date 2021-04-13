@@ -8,4 +8,23 @@
     [transitionDuration]="400"
   >
   </carousel>
+
+  <div class="products">
+    <div class="products__header">
+      <h2>New Products</h2>
+    </div>
+    <div *ngIf="loading">loading...</div>
+    <div class="products__list" *ngIf="!loading">
+      <app-product-card
+        *ngFor="let n of products"
+        [id]="n.id"
+        [title]="n.title"
+        [image]="n.image"
+        [price]="n.price"
+        [short_desc]="n.short_desc"
+        [category]="n.category"
+      >
+      </app-product-card>
+    </div>
+  </div>
 </div>
