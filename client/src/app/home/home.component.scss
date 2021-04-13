@@ -1,0 +1,21 @@
+.home-container {
+  .carousel {
+    min-height: 225px !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .home-container {
+    .carousel {
+      min-height: 350px !important;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .home-container {
+    .carousel {
+      min-height: 425px !important;
+    }
+  }
+}

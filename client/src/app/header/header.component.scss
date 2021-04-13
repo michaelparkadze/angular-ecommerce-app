@@ -68,7 +68,7 @@
   background-color: #fff;
   border-right: 1px solid #ccc;
   transition: all 0.35s ease;
-  z-index: 1000;
+  z-index: 10002;
   > nav {
     > ul {
       > li {
@@ -92,7 +92,7 @@
   left: 0;
   background-color: transparent;
   transition: background-color 0.35s ease;
-  z-index: 999;
+  z-index: 10001;
   pointer-events: none;
 }
 
