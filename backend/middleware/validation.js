@@ -18,6 +18,16 @@ const registerValidation = (data) => {
   return schema.validate(data, options);
 };
 
+const loginValidation = (data) => {
+  const schema = Joi.object({
+    email: Joi.string().email().required().strict(),
+    password: Joi.string().min(6).required().strict(),
+  });
+
+  return schema.validate(data, options);
+};
+
 module.exports = {
   registerValidation,
+  loginValidation,
 };
