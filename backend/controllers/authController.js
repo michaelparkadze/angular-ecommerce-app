@@ -9,8 +9,8 @@ exports.register_user = async (req, res, next) => {
       const { statusCode = 200, message, data, token } = result;
       res.status(statusCode).send({ message, data, token });
     })
-    .catch((error) => {
-      const { statusCode = 400, message, err } = error;
-      res.status(statusCode).send({ message, err }) && next(error);
+    .catch((err) => {
+      const { statusCode = 400, error, data } = err;
+      res.status(statusCode).send({ error, data }) && next(err);
     });
 };

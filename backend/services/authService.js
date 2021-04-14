@@ -17,7 +17,7 @@ exports.registerUser = async (params) => {
       (err, result) => {
         if (result.length > 0) {
           reject({
-            message: "Email address is in use, please try a different one",
+            error: "Email address is in use, please try a different one",
             statusCode: 400,
           });
         } else if (result.length === 0) {
@@ -27,9 +27,9 @@ exports.registerUser = async (params) => {
             (err, result) => {
               if (err) {
                 reject({
-                  message: "Something went wrong, please try again",
+                  error: "Something went wrong, please try again",
                   statusCode: 400,
-                  err,
+                  data: err,
                 });
               } else {
                 const token = jwt.sign({ data: result }, "secret");
