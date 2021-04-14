@@ -5,7 +5,7 @@ const md5 = require("md5");
 
 exports.registerUser = async (params) => {
   const { error } = registerValidation(params);
-  if (error) throw { message: error.details[0].message, statusCode: 400 };
+  if (error) throw { error: error.details[0].message, statusCode: 400 };
 
   const { fullName, email, password } = params;
   const hashedPassword = md5(password.toString());
