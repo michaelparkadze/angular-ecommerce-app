@@ -22,7 +22,6 @@ export class HeaderComponent implements OnInit {
 
     if (this.screenWidth > 768) this.isMobile = false;
     else this.isMobile = true;
-    console.log(this.screenHeight, this.screenWidth);
   }
 
   constructor(private _token: TokenStorageService, private _auth: AuthService) {
@@ -38,7 +37,7 @@ export class HeaderComponent implements OnInit {
     else this.isLoggedIn = false;
   }
 
-  onClickFunc() {
+  toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
   }
 

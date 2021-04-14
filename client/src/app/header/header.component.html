@@ -1,10 +1,13 @@
 <header class="header-container">
   <div class="header-container__left">
-    <button (click)="onClickFunc()">Menu</button>
+    <button (click)="toggleMenu()">Menu</button>
   </div>
-  <div class="header-container__middle">Eccom</div>
+  <div class="header-container__middle">
+    <h3 routerLink="/">Eccom</h3>
+  </div>
   <div class="header-container__right">
-    <button (click)="logout()">{{ isLoggedIn }}</button>
+    <button routerLink="/login" *ngIf="!isLoggedIn">Login</button>
+    <button routerLink="/profile" *ngIf="isLoggedIn">Profile</button>
   </div>
 </header>
 
@@ -24,22 +27,30 @@
 </div>
 
 <div [className]="isMenuOpen ? 'side-menu show' : 'side-menu'">
-  <h2>Example menu</h2>
-  <nav>
-    <ul>
-      <li routerLink="/" (click)="onClickFunc()">Home</li>
-      <li routerLink="/login" (click)="onClickFunc()">Login</li>
-      <li routerLink="/register" (click)="onClickFunc()">Register</li>
-      <li routerLink="/profile" (click)="onClickFunc()">Profile</li>
-      <li routerLink="/cart" (click)="onClickFunc()">Cart</li>
-      <li routerLink="/product/1" (click)="onClickFunc()">Product</li>
-      <li routerLink="/checkout" (click)="onClickFunc()">Checkout</li>
-      <li routerLink="/order-history" (click)="onClickFunc()">Order History</li>
-    </ul>
-  </nav>
+  <div class="side-menu__content">
+    <h2>Eccom</h2>
+    <nav>
+      <ul>
+        <li routerLink="/" (click)="toggleMenu()">Home</li>
+        <li routerLink="/profile" (click)="toggleMenu()">Profile</li>
+        <li routerLink="/cart" (click)="toggleMenu()">Cart</li>
+        <li routerLink="/order-history" (click)="toggleMenu()">
+          Order History
+        </li>
+      </ul>
+    </nav>
+    <div class="🍑">
+      <button routerLink="/login" (click)="toggleMenu()" *ngIf="!isLoggedIn">
+        Login
+      </button>
+      <button routerLink="/register" (click)="toggleMenu()" *ngIf="!isLoggedIn">
+        Register
+      </button>
+    </div>
+  </div>
 </div>
 
 <div
   [className]="isMenuOpen ? 'darken-background enable' : 'darken-background'"
-  (click)="onClickFunc()"
+  (click)="toggleMenu()"
 ></div>

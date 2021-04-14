@@ -1,5 +1,6 @@
 .header-container {
   height: 72px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ccc;
@@ -26,14 +27,13 @@
   &__middle {
     flex-grow: 1;
     text-align: center;
+    > h3 {
+    }
   }
   &__right {
     > button {
-      width: 72px;
-      height: 100%;
-      background-color: transparent;
-      border: none;
-      border-left: 1px solid #ccc;
+      padding: 8px 16px;
+      border: 1px solid #ccc;
       transition: all 0.2s ease;
       &:hover {
         background-color: rgb(231, 231, 231);
@@ -63,18 +63,41 @@
   height: 100vh;
   position: fixed;
   top: 0px;
-  padding: 16px;
+  padding: 36px 16px 24px;
   transform: translateX(-285px);
   background-color: #fff;
   border-right: 1px solid #ccc;
   transition: all 0.35s ease;
   z-index: 10002;
-  > nav {
-    > ul {
-      > li {
-        padding: 8px 0;
-        margin-bottom: 12px;
-        cursor: pointer;
+  &__content {
+    height: 100%;
+    position: relative;
+    > h2 {
+      margin-bottom: 24px;
+    }
+    > nav {
+      > ul {
+        > li {
+          padding: 8px 0;
+          margin-bottom: 12px;
+          cursor: pointer;
+        }
+      }
+    }
+    .🍑 {
+      position: absolute;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      > button {
+        margin-bottom: 8px;
+        padding: 14px 0;
+        width: 252px;
+        flex-grow: 1;
+        border: 1px solid #ccc;
+        background: transparent;
       }
     }
   }
