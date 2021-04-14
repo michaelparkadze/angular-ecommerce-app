@@ -5,7 +5,7 @@ const md5 = require("md5");
 
 exports.registerUser = async (params) => {
   const { error } = registerValidation(params);
-  if (error) throw { error: error.details[0].message, statusCode: 400 };
+  if (error) throw { message: error.details[0].message, statusCode: 400 };
 
   const { fullName, email, password } = params;
   const hashedPassword = md5(password.toString());
@@ -17,7 +17,7 @@ exports.registerUser = async (params) => {
       (err, result) => {
         if (result.length > 0) {
           reject({
-            error: "Email address is in use, please try a different one",
+            message: "Email address is in use, please try a different one",
             statusCode: 400,
           });
         } else if (result.length === 0) {
@@ -27,7 +27,7 @@ exports.registerUser = async (params) => {
             (err, result) => {
               if (err) {
                 reject({
-                  error: "Something went wrong, please try again",
+                  message: "Something went wrong, please try again",
                   statusCode: 400,
                   data: err,
                 });

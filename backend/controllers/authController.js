@@ -10,7 +10,7 @@ exports.register_user = async (req, res, next) => {
       res.status(statusCode).send({ message, data, token });
     })
     .catch((err) => {
-      const { statusCode = 400, error, data } = err;
-      res.status(statusCode).send({ error, data }) && next(err);
+      const { statusCode = 400, message, data } = err;
+      res.status(statusCode).send({ message, data }) && next(err);
     });
 };
