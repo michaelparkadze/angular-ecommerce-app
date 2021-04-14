@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
   selector: 'app-header',
@@ -11,6 +13,7 @@ export class HeaderComponent implements OnInit {
   screenWidth: any;
   isMenuOpen = false;
   isMobile = false;
+  isLoggedIn = false;
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -22,13 +25,24 @@ export class HeaderComponent implements OnInit {
     console.log(this.screenHeight, this.screenWidth);
   }
 
-  constructor() {
+  constructor(private _token: TokenStorageService, private _auth: AuthService) {
     this.getScreenSize();
+    this._auth.user.subscribe((user) => {
+      if (user) this.isLoggedIn = true;
+      else this.isLoggedIn = false;
+    });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (this._token.getUser()) this.isLoggedIn = true;
+    else this.isLoggedIn = false;
+  }
 
   onClickFunc() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  logout() {
+    this._auth.logout();
   }
 }

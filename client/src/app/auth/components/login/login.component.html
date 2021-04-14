@@ -1,17 +1,20 @@
 <div class="login-container">
   <div class="form-container">
     <h2>Sign In to Eccom</h2>
-    <form>
+    <div class="error-container" *ngIf="error">
+      <span>{{ error }}</span>
+    </div>
+    <form (ngSubmit)="onSubmit()">
       <div class="input-container">
         <label for="email">Email address</label>
-        <input type="email" name="email" />
+        <input type="email" name="email" [(ngModel)]="email" />
       </div>
       <div class="input-container">
         <label for="password">Password</label>
-        <input type="password" name="password" />
+        <input type="password" name="password" [(ngModel)]="password" />
       </div>
       <div class="cta-container">
-        <button>Sign in</button>
+        <input type="submit" value="Sign in" />
       </div>
       <div class="forgot-password">
         <a href="">Forgot password?</a>

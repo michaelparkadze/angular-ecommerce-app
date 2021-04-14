@@ -1,23 +1,30 @@
 <div class="register-container">
   <div class="form-container">
     <h2>Sign Up to Eccom</h2>
-    <form>
+    <div class="error-container" *ngIf="errorMessage">
+      <span>{{ errorMessage }}</span>
+    </div>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
       <div class="input-container">
         <label for="fullName">Full name</label>
-        <input type="text" name="fullName" />
+        <input type="text" name="fullName" [(ngModel)]="fullName" />
       </div>
       <div class="input-container">
         <label for="email">Email address</label>
-        <input type="email" name="email" />
+        <input type="email" name="email" [(ngModel)]="email" />
       </div>
       <div class="🤪">
         <div class="input-container">
           <label for="password">Password</label>
-          <input type="password" name="password" />
+          <input type="password" name="password" [(ngModel)]="password" />
         </div>
         <div class="input-container">
           <label for="confirmPassword">Confirm password</label>
-          <input type="password" name="confirmPassword" />
+          <input
+            type="password"
+            name="confirmPassword"
+            [(ngModel)]="confirmPassword"
+          />
         </div>
       </div>
       <div class="✅">
@@ -31,7 +38,7 @@
         </div>
       </div>
       <div class="cta-container">
-        <button>Sign up</button>
+        <input type="submit" value="Sign up" />
       </div>
     </form>
   </div>
