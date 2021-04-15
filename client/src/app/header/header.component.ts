@@ -14,6 +14,8 @@ export class HeaderComponent implements OnInit {
   isMenuOpen = false;
   isMobile = false;
   isLoggedIn = false;
+  dropdownVisible = false;
+  test = [{ id: '1' }, { id: '2' }];
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -39,6 +41,10 @@ export class HeaderComponent implements OnInit {
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+
+  toggleDropdown() {
+    this.dropdownVisible = !this.dropdownVisible;
   }
 
   logout() {

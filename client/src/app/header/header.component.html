@@ -6,8 +6,78 @@
     <h3 routerLink="/">Eccom</h3>
   </div>
   <div class="header-container__right">
-    <button routerLink="/login" *ngIf="!isLoggedIn">Login</button>
-    <button routerLink="/profile" *ngIf="isLoggedIn">Profile</button>
+    <ng-container>
+      <div class="cart-counter">1</div>
+      <button
+        nz-button
+        nz-dropdown
+        nzType="text"
+        nzPlacement="right"
+        nzShape="circle"
+        nzSize="large"
+        [nzDropdownMenu]="menu"
+        [nzVisible]="dropdownVisible"
+        (nzVisibleChange)="toggleDropdown()"
+      >
+        <i
+          nz-icon
+          nzType="shopping-cart"
+          [ngStyle]="{ fontSize: '24px', paddingTop: '3px' }"
+        ></i>
+      </button>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="cart-dropdown">
+          <!-- <div class="cart-dropdown__empty">Your cart is empty.</div> -->
+          <div class="cart-dropdown__content">
+            <div class="product-list">
+              <div class="product-list__item" *ngFor="let product of test">
+                <div class="product-item">
+                  <div class="product-item__remove">X</div>
+                  <div class="product-item__image"></div>
+                  <div class="product-item__description">
+                    <div class="product-name">Playstation 4</div>
+                    <div class="product-amount">1 x <span>$240.99</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cart-info">
+              <div class="selected-amount">1 Item(s) selected</div>
+              <div class="total-price">Total: $240.99</div>
+            </div>
+            <div class="cart-cta">
+              <button
+                nz-button
+                nzSize="large"
+                routerLink="/cart"
+                (click)="toggleDropdown()"
+                [ngStyle]="{
+                  borderLeft: 'none',
+                  borderRight: 'none',
+                  borderBottom: 'none'
+                }"
+              >
+                View cart
+              </button>
+              <button
+                nz-button
+                nzType="primary"
+                nzSize="large"
+                routerLink="/checkout"
+                (click)="toggleDropdown()"
+                [ngStyle]="{
+                  borderLeft: 'none',
+                  borderRight: 'none',
+                  borderBottom: 'none'
+                }"
+              >
+                Checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+    </ng-container>
   </div>
 </header>
 

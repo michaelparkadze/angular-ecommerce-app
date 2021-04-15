@@ -31,13 +31,94 @@
     }
   }
   &__right {
-    > button {
-      padding: 8px 16px;
-      border: 1px solid #ccc;
-      transition: all 0.2s ease;
-      &:hover {
-        background-color: rgb(231, 231, 231);
-        cursor: pointer;
+    position: relative;
+    .cart-counter {
+      color: #fff;
+      background-color: red;
+      width: 17px;
+      height: 17px;
+      font-size: 11px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
+      position: absolute;
+      right: 0px;
+      top: 17px;
+      z-index: 2;
+    }
+  }
+}
+
+// Cart Dropdown
+.cart-dropdown {
+  max-width: 260px;
+  min-width: 260px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  &__empty {
+    padding: 12px;
+    text-align: center;
+    font-weight: 500;
+  }
+  &__content {
+    padding-top: 12px;
+    .product-list {
+      padding: 0 12px;
+      max-height: 120px;
+      overflow-y: auto;
+      border-bottom: 1px solid #ccc;
+      &__item {
+        margin-bottom: 12px;
+        .product-item {
+          display: flex;
+          position: relative;
+          align-items: center;
+          &__remove {
+            top: 4px;
+            right: 0px;
+            position: absolute;
+            border: 1px solid #ccc;
+            height: 22px;
+            width: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          &__image {
+            height: 72px;
+            width: 72px;
+            background-color: #ccc;
+          }
+          &__description {
+            margin-left: 12px;
+            .product-name {
+              font-size: 1.125rem;
+            }
+            .product-amount {
+              > span {
+                font-weight: 500;
+              }
+            }
+          }
+        }
+      }
+    }
+    .cart-info {
+      padding: 16px;
+      .selected-amount {
+        font-size: 0.875rem;
+      }
+      .total-price {
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+    }
+    .cart-cta {
+      display: flex;
+      flex-direction: row;
+      > button {
+        width: 100%;
       }
     }
   }
