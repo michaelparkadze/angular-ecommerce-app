@@ -27,6 +27,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzAlertModule } from 'ng-zorro-antd/alert';
 
 registerLocaleData(en);
 
@@ -56,6 +58,8 @@ registerLocaleData(en);
     NzButtonModule,
     NzDropDownModule,
     NzIconModule,
+    NzInputModule,
+    NzAlertModule,
   ],
   providers: [
     authInterceptorProviders,
