@@ -1,4 +1,5 @@
 @import "~ng-zorro-antd/ng-zorro-antd.min.css";
+@import "~swiper/swiper-bundle";
 
 * {
   box-sizing: border-box;
@@ -23,4 +24,8 @@ ul {
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+.ant-input-number-input {
+  height: 44px;
 }

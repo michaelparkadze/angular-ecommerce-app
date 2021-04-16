@@ -29,6 +29,8 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { SwiperModule } from 'swiper/angular';
 
 registerLocaleData(en);
 
@@ -60,6 +62,8 @@ registerLocaleData(en);
     NzIconModule,
     NzInputModule,
     NzAlertModule,
+    NzInputNumberModule,
+    SwiperModule,
   ],
   providers: [
     authInterceptorProviders,
