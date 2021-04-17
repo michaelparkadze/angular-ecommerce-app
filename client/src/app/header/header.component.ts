@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HostListener } from '@angular/core';
 import { AuthService } from '../services/auth.service';
+import { CartService } from '../services/cart.service';
 import { TokenStorageService } from '../services/token-storage.service';
 
 @Component({
@@ -15,7 +16,7 @@ export class HeaderComponent implements OnInit {
   isMobile = false;
   isLoggedIn = false;
   dropdownVisible = false;
-  test = [{ id: '1' }, { id: '2' }];
+  cartData: any;
 
   @HostListener('window:resize', ['$event'])
   getScreenSize(event?) {
@@ -26,11 +27,18 @@ export class HeaderComponent implements OnInit {
     else this.isMobile = true;
   }
 
-  constructor(private _token: TokenStorageService, private _auth: AuthService) {
+  constructor(
+    private _token: TokenStorageService,
+    private _auth: AuthService,
+    private _cart: CartService
+  ) {
     this.getScreenSize();
     this._auth.user.subscribe((user) => {
       if (user) this.isLoggedIn = true;
       else this.isLoggedIn = false;
+    });
+    this._cart.cartDataObs$.subscribe((cartData) => {
+      this.cartData = cartData;
     });
   }
 
@@ -45,6 +53,10 @@ export class HeaderComponent implements OnInit {
 
   toggleDropdown() {
     this.dropdownVisible = !this.dropdownVisible;
+  }
+
+  removeProductFromCart(id: number) {
+    this._cart.removeProduct(id);
   }
 
   logout() {

@@ -7,7 +7,7 @@
   </div>
   <div class="header-container__right">
     <ng-container>
-      <div class="cart-counter">1</div>
+      <div class="cart-counter">{{ cartData.products.length }}</div>
       <button
         nz-button
         nz-dropdown
@@ -27,23 +27,52 @@
       </button>
       <nz-dropdown-menu #menu="nzDropdownMenu">
         <div class="cart-dropdown">
-          <!-- <div class="cart-dropdown__empty">Your cart is empty.</div> -->
-          <div class="cart-dropdown__content">
+          <div
+            class="cart-dropdown__empty"
+            *ngIf="cartData.products.length === 0"
+          >
+            Your cart is empty.
+          </div>
+          <div
+            class="cart-dropdown__content"
+            *ngIf="cartData.products.length !== 0"
+          >
             <div class="product-list">
-              <div class="product-list__item" *ngFor="let product of test">
+              <div
+                class="product-list__item"
+                *ngFor="let product of cartData.products; index as i"
+                [ngStyle]="{
+                  'border-bottom':
+                    i !== cartData.products.length - 1 && '1px solid #ccc'
+                }"
+              >
                 <div class="product-item">
-                  <div class="product-item__remove">X</div>
-                  <div class="product-item__image"></div>
+                  <div
+                    class="product-item__remove"
+                    (click)="removeProductFromCart(product.id)"
+                  >
+                    X
+                  </div>
+                  <div class="product-item__image">
+                    <img [src]="product.image" alt="" />
+                  </div>
                   <div class="product-item__description">
-                    <div class="product-name">Playstation 4</div>
-                    <div class="product-amount">1 x <span>$240.99</span></div>
+                    <div class="product-name">{{ product.title }}</div>
+                    <div class="product-amount">
+                      {{ product.quantity }} x
+                      <span>{{ product.price | currency: "USD" }}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="cart-info">
-              <div class="selected-amount">1 Item(s) selected</div>
-              <div class="total-price">Total: $240.99</div>
+              <div class="selected-amount">
+                {{ cartData.products.length }} Item(s) selected
+              </div>
+              <div class="total-price">
+                Total: {{ cartData.total | currency: "USD" }}
+              </div>
             </div>
             <div class="cart-cta">
               <button

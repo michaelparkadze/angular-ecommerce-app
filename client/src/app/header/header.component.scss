@@ -52,8 +52,8 @@
 
 // Cart Dropdown
 .cart-dropdown {
-  max-width: 260px;
-  min-width: 260px;
+  max-width: 280px;
+  min-width: 280px;
   background-color: #fff;
   border: 1px solid #ccc;
   &__empty {
@@ -65,11 +65,13 @@
     padding-top: 12px;
     .product-list {
       padding: 0 12px;
-      max-height: 120px;
+      max-height: 180px;
       overflow-y: auto;
       border-bottom: 1px solid #ccc;
       &__item {
+        padding: 12px 0;
         margin-bottom: 12px;
+        cursor: default;
         .product-item {
           display: flex;
           position: relative;
@@ -84,14 +86,18 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            cursor: pointer;
           }
           &__image {
-            height: 72px;
-            width: 72px;
-            background-color: #ccc;
+            > img {
+              height: 72px;
+              width: 72px;
+              object-fit: contain;
+            }
           }
           &__description {
             margin-left: 12px;
+            padding-right: 24px;
             .product-name {
               font-size: 1.125rem;
             }
