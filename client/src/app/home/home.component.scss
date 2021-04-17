@@ -1,6 +1,6 @@
 .home-container {
-  .carousel {
-    min-height: 250px !important;
+  &__carousel {
+    height: 200px;
   }
   .products {
     margin: 0 auto;
@@ -29,8 +29,7 @@
 
 @media screen and (min-width: 768px) {
   .home-container {
-    .carousel {
-      min-height: 350px !important;
+    &__carousel {
     }
     .products {
       max-width: calc(700px + 72px); // width of cards + all padding + gap
@@ -55,8 +54,7 @@
 
 @media screen and (min-width: 1200px) {
   .home-container {
-    .carousel {
-      min-height: 425px !important;
+    &__carousel {
     }
     .products {
       max-width: calc(1050px + 96px); // width of cards + all padding + gap

@@ -10,20 +10,6 @@ import { Products, Product } from '../shared/models/product.model';
   encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
-  images = [
-    {
-      path: '../../assets/1.jpg',
-    },
-    {
-      path: '../../assets/2.jpg',
-    },
-    {
-      path: '../../assets/3.jpg',
-    },
-    {
-      path: '../../assets/4.jpg',
-    },
-  ];
   products: Product[] = [];
   loading = false;
 
@@ -34,12 +20,16 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    setTimeout(() => {
-      this.productService.getAllProducts(8).subscribe((res: any) => {
+    this.productService.getAllProducts(8).subscribe(
+      (res: any) => {
         console.log(res);
         this.products = res;
         this.loading = false;
-      });
-    }, 1000);
+      },
+      (err) => {
+        console.log(err);
+        this.loading = false;
+      }
+    );
   }
 }
