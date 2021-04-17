@@ -1,5 +1,5 @@
 .header-container {
-  height: 72px;
+  height: 60px;
   padding: 0 16px;
   display: flex;
   align-items: center;
@@ -11,18 +11,6 @@
     align-items: center;
   }
   &__left {
-    > button {
-      width: 72px;
-      height: 100%;
-      background-color: transparent;
-      border: none;
-      border-right: 1px solid #ccc;
-      transition: all 0.2s ease;
-      &:hover {
-        background-color: rgb(231, 231, 231);
-        cursor: pointer;
-      }
-    }
   }
   &__middle {
     flex-grow: 1;
@@ -44,9 +32,15 @@
       border-radius: 50px;
       position: absolute;
       right: 0px;
-      top: 17px;
+      top: 12px;
       z-index: 2;
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header-container {
+    padding: 0 24px;
   }
 }
 
