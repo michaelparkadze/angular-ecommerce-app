@@ -1,24 +1,24 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
   cartData = {
-    products: [
-      {
-        id: undefined,
-        price: 0,
-        quantity: 0,
-      },
-    ],
+    products: [],
     total: 0,
   };
 
-  constructor() {}
+  cartDataObs$ = new BehaviorSubject(this.cartData);
 
-  addProduct(id: number, price: number, quantity: number): void {
-    let product = { id, price, quantity };
+  constructor() {
+    this.cartDataObs$.next(this.cartData);
+  }
+
+  addProduct(params): void {
+    const { id, price, quantity, image, title } = params;
+    let product = { id, price, quantity, image, title };
     if (!this.isProductInCart(id)) {
       this.cartData.products.push(product);
     } else {
@@ -33,7 +33,16 @@ export class CartService {
     }
 
     this.cartData.total = this.getCartTotal();
-    console.log(this.cartData);
+    this.cartDataObs$.next({ ...this.cartData });
+  }
+
+  removeProduct(id: number): void {
+    let updatedProducts = this.cartData.products.filter(
+      (prod) => prod.id !== id
+    );
+    console.log(updatedProducts);
+    this.cartData.products = updatedProducts;
+    this.cartDataObs$.next({ ...this.cartData });
   }
 
   getCartTotal(): number {
