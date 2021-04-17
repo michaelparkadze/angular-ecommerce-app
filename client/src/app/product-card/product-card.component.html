@@ -12,6 +12,12 @@
     </header>
   </div>
   <div class="product-card__cta">
-    <button>Add to cart</button>
+    <button
+      (click)="
+        onAdd({ id: id, price: price, quantity: 1, image: image, title: title })
+      "
+    >
+      Add to cart
+    </button>
   </div>
 </div>

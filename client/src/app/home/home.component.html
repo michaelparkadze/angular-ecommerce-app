@@ -24,6 +24,7 @@
         [price]="n.price"
         [short_desc]="n.short_desc"
         [category]="n.category"
+        [onAdd]="cartService.addProduct.bind(cartService)"
       >
       </app-product-card>
     </div>

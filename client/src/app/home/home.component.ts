@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 import { Products, Product } from '../shared/models/product.model';
 
@@ -26,7 +27,10 @@ export class HomeComponent implements OnInit {
   products: Product[] = [];
   loading = false;
 
-  constructor(private productService: ProductService) {}
+  constructor(
+    private productService: ProductService,
+    private cartService: CartService
+  ) {}
 
   ngOnInit(): void {
     this.loading = true;
