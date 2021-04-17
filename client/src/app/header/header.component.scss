@@ -139,43 +139,65 @@
   }
 }
 
+// Side Menu Styles
+
 .side-menu {
   width: 285px;
   height: 100vh;
   position: fixed;
   top: 0px;
-  padding: 36px 16px 24px;
+  padding: 56px 0px 24px;
   transform: translateX(-285px);
   background-color: #fff;
   border-right: 1px solid #ccc;
   transition: all 0.35s ease;
   z-index: 10002;
+  > i {
+    top: 24px;
+    right: 24px;
+    position: absolute;
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
   &__content {
     height: 100%;
     position: relative;
     > h2 {
+      padding-left: 24px;
       margin-bottom: 24px;
+      outline: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+      &:hover {
+        transform: translateX(16px);
+      }
     }
     > nav {
       > ul {
         > li {
-          padding: 8px 0;
+          outline: none;
+          padding: 8px 0 8px 24px;
           margin-bottom: 12px;
           cursor: pointer;
+          transition: background-color 0.2s;
+          &:hover {
+            background-color: rgb(236, 236, 236);
+          }
         }
       }
     }
     .🍑 {
       position: absolute;
       bottom: 0;
+      left: 24px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       > button {
         margin-bottom: 8px;
-        padding: 14px 0;
-        width: 252px;
+        height: 44px;
+        width: 236px;
         flex-grow: 1;
         border: 1px solid #ccc;
         background: transparent;

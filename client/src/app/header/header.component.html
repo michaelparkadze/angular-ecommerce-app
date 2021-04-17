@@ -140,8 +140,9 @@
 </div> -->
 
 <div [className]="isMenuOpen ? 'side-menu show' : 'side-menu'">
+  <i nz-icon nzType="close" nzTheme="outline" (click)="toggleMenu()"></i>
   <div class="side-menu__content">
-    <h2>Eccom</h2>
+    <h2 routerLink="/" (click)="toggleMenu()">Eccom</h2>
     <nav>
       <ul>
         <li routerLink="/" (click)="toggleMenu()">Home</li>
@@ -153,11 +154,24 @@
       </ul>
     </nav>
     <div class="🍑">
-      <button routerLink="/login" (click)="toggleMenu()" *ngIf="!isLoggedIn">
+      <button
+        nz-button
+        routerLink="/login"
+        (click)="toggleMenu()"
+        *ngIf="!isLoggedIn"
+      >
         Login
       </button>
-      <button routerLink="/register" (click)="toggleMenu()" *ngIf="!isLoggedIn">
+      <button
+        nz-button
+        routerLink="/register"
+        (click)="toggleMenu()"
+        *ngIf="!isLoggedIn"
+      >
         Register
+      </button>
+      <button nz-button (click)="logout() && toggleMenu()" *ngIf="isLoggedIn">
+        Log out
       </button>
     </div>
   </div>

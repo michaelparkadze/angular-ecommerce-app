@@ -61,5 +61,6 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this._auth.logout();
+    this.isMenuOpen = false;
   }
 }
