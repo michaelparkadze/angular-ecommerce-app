@@ -15,6 +15,7 @@ import SwiperCore, {
   Thumbs,
   Controller,
 } from 'swiper/core';
+import { CartService } from '../services/cart.service';
 
 // install Swiper components
 SwiperCore.use([
@@ -35,15 +36,16 @@ SwiperCore.use([
   styleUrls: ['./product.component.scss'],
 })
 export class ProductComponent implements OnInit {
-  id: Number;
+  id: number;
   product: any;
-  quantity = 1;
+  quantity: number;
   showcaseImages: any[] = [];
   loading = false;
 
   constructor(
     private _route: ActivatedRoute,
-    private _product: ProductService
+    private _product: ProductService,
+    private _cart: CartService
   ) {}
 
   ngOnInit(): void {
@@ -55,10 +57,14 @@ export class ProductComponent implements OnInit {
         })
       )
       .subscribe((productId) => {
-        this.id = productId;
+        // returns string so convert it to number
+        this.id = parseInt(productId);
         this._product.getSingleProduct(productId).subscribe((product) => {
           console.log(product);
           this.product = product;
+          if (product.quantity === 0) this.quantity = 0;
+          else this.quantity = 1;
+
           if (product.images) {
             this.showcaseImages = product.images.split(';');
           }
@@ -68,6 +74,12 @@ export class ProductComponent implements OnInit {
   }
 
   addToCart(): void {
-    alert('product added to cart');
+    this._cart.addProduct({
+      id: this.id,
+      price: this.product.price,
+      quantity: this.quantity,
+      image: this.product.image,
+      title: this.product.title,
+    });
   }
 }

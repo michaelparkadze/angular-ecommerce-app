@@ -32,6 +32,7 @@
     </div>
     <div class="product-container__details">
       <h2 class="title">{{ product.title }}</h2>
+      {{ quantity }}
       <div class="reviews">
         <div class="rating">
           <i nz-icon nzType="star" nzTheme="fill"></i>
@@ -47,7 +48,11 @@
       </div>
       <div class="price-container">
         <h2 class="price">{{ product.price | currency: "USD" }}</h2>
-        <span class="availability">In Stock</span>
+        <span
+          class="availability"
+          [ngStyle]="{ color: quantity > 0 ? 'inherit' : 'red' }"
+          >{{ quantity === 0 ? "Out of stock" : "In stock" }}</span
+        >
       </div>
       <div class="description">{{ product.description }}</div>
       <div class="cta">
@@ -59,7 +64,12 @@
             [nzMax]="product.quantity > 0 ? product.quantity : 0"
             [nzStep]="1"
           ></nz-input-number>
-          <button nz-button nzType="primary" (click)="addToCart()">
+          <button
+            nz-button
+            nzType="primary"
+            (click)="addToCart()"
+            [disabled]="quantity === 0"
+          >
             Add to cart
           </button>
         </div>
