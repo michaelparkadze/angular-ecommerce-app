@@ -18,17 +18,31 @@ export class CartService {
 
   addProduct(params): void {
     const { id, price, quantity, image, title } = params;
-    let product = { id, price, quantity, image, title };
+    const product = { id, price, quantity, image, title };
+
     if (!this.isProductInCart(id)) {
-      this.cartData.products.push(product);
+      if (quantity) this.cartData.products.push(product);
+      else this.cartData.products.push({ ...product, quantity: 1 });
     } else {
+      // copy array, find item index and update
       let updatedProducts = [...this.cartData.products];
-      let productIndex = updatedProducts.findIndex((prod) => prod.id === id);
+      let productIndex = updatedProducts.findIndex((prod) => prod.id == id);
       let product = updatedProducts[productIndex];
-      updatedProducts[productIndex] = {
-        ...product,
-        quantity: product.quantity + 1,
-      };
+
+      // if no quantity, increment
+      if (quantity) {
+        updatedProducts[productIndex] = {
+          ...product,
+          quantity: quantity,
+        };
+      } else {
+        updatedProducts[productIndex] = {
+          ...product,
+          quantity: product.quantity + 1,
+        };
+      }
+
+      console.log(updatedProducts);
       this.cartData.products = updatedProducts;
     }
 
@@ -40,7 +54,6 @@ export class CartService {
     let updatedProducts = this.cartData.products.filter(
       (prod) => prod.id !== id
     );
-    console.log(updatedProducts);
     this.cartData.products = updatedProducts;
     this.cartDataObs$.next({ ...this.cartData });
   }
