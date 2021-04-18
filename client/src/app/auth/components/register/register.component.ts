@@ -52,4 +52,10 @@ export class RegisterComponent implements OnInit {
       this.errorMessage = 'Make sure to fill everything ;)';
     }
   }
+
+  canSubmit(): boolean {
+    return this.fullName && this.email && this.password && this.confirmPassword
+      ? true
+      : false;
+  }
 }
