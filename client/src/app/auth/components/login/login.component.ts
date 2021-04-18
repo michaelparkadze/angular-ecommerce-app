@@ -11,12 +11,14 @@ export class LoginComponent implements OnInit {
   email = '';
   password = '';
   error = '';
+  loading = false;
 
   constructor(private _auth: AuthService, private _router: Router) {}
 
   ngOnInit(): void {}
 
   onSubmit(): void {
+    this.loading = true;
     this.error = '';
     if (!this.email || !this.password) {
       this.error = 'Make sure to fill everything ;)';
@@ -25,11 +27,13 @@ export class LoginComponent implements OnInit {
         .login({ email: this.email, password: this.password })
         .subscribe(
           (res) => {
+            this.loading = false;
             this._router.navigate(['/']);
           },
           (err) => {
             console.log(err);
             this.error = err.error.message;
+            this.loading = false;
           }
         );
     }

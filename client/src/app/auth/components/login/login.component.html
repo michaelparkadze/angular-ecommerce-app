@@ -30,7 +30,12 @@
         />
       </div>
       <div class="cta-container">
-        <button nz-button type="submit" [disabled]="!canSubmit()">
+        <button
+          nz-button
+          type="submit"
+          [disabled]="!canSubmit()"
+          [nzLoading]="loading"
+        >
           Sign in
         </button>
       </div>
