@@ -1,4 +1,22 @@
 <div class="home-container">
+  <div class="categories">
+    <div class="categories__header">
+      <h2>Categories</h2>
+    </div>
+    <div class="categories__list">
+      <swiper
+        [zoom]="false"
+        [slidesPerView]="screenWidth > 1200 ? 3 : 1"
+        [spaceBetween]="50"
+        [pagination]="true"
+        [loop]="true"
+      >
+        <ng-template swiperSlide *ngFor="let c of categories">
+          <div class="category-card">{{ c.name }}</div>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
   <div class="products">
     <div class="products__header">
       <h2>New Products</h2>

@@ -1,15 +1,46 @@
 .home-container {
-  &__carousel {
-    height: 200px;
-  }
-  .products {
+  padding-top: 24px;
+  .categories {
     margin: 0 auto;
-    padding: 36px 16px;
+    padding: 24px 16px;
     max-width: calc(350px + 32px); // width of cards + all padding + gap
     &__header {
       margin-bottom: 16px;
       > h2 {
-        font-size: 1.875rem;
+        font-size: 1.75rem;
+      }
+    }
+    &__list {
+      // just for categories
+      .swiper-pagination-bullet-active {
+        background-color: #fff;
+      }
+      .category-card {
+        height: 150px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3px;
+        font-size: 1.375rem;
+        letter-spacing: 5px;
+        font-weight: 500;
+        text-transform: uppercase;
+        color: #fff;
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        cursor: pointer;
+      }
+    }
+  }
+  .products {
+    margin: 0 auto;
+    padding: 24px 16px;
+    max-width: calc(350px + 32px); // width of cards + all padding + gap
+    &__header {
+      margin-bottom: 16px;
+      > h2 {
+        font-size: 1.75rem;
       }
     }
     &__list {
@@ -30,16 +61,20 @@
 
 @media screen and (min-width: 768px) {
   .home-container {
-    &__carousel {
+    .categories {
+      max-width: calc(700px + 72px); // width of cards + all padding + gap
+      padding: 36px 24px;
+      &__list {
+        .category-card {
+          height: 200px;
+        }
+      }
     }
     .products {
       max-width: calc(700px + 72px); // width of cards + all padding + gap
       padding: 36px 24px;
       &__header {
         margin-bottom: 16px;
-        > h2 {
-          font-size: 1.875rem;
-        }
       }
       &__list {
         display: grid;
@@ -55,16 +90,20 @@
 
 @media screen and (min-width: 1200px) {
   .home-container {
-    &__carousel {
+    .categories {
+      max-width: calc(1050px + 96px); // width of cards + all padding + gap
+      padding: 36px 24px;
+      &__list {
+        .category-card {
+          width: 348px;
+        }
+      }
     }
     .products {
       max-width: calc(1050px + 96px); // width of cards + all padding + gap
       padding: 36px 24px;
       &__header {
         margin-bottom: 16px;
-        > h2 {
-          font-size: 1.875rem;
-        }
       }
       &__list {
         display: grid;
@@ -73,5 +112,17 @@
         }
       }
     }
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }

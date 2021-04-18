@@ -1,4 +1,9 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewEncapsulation,
+  HostListener,
+} from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { ProductService } from '../services/product.service';
 import { Products, Product } from '../shared/models/product.model';
@@ -11,6 +16,17 @@ import { Products, Product } from '../shared/models/product.model';
 })
 export class HomeComponent implements OnInit {
   products: Product[] = [];
+  categories: any[] = [
+    {
+      name: 'Laptops',
+    },
+    {
+      name: 'Accessories',
+    },
+    {
+      name: 'Cameras',
+    },
+  ];
   loading = false;
 
   constructor(
@@ -18,7 +34,18 @@ export class HomeComponent implements OnInit {
     private cartService: CartService
   ) {}
 
+  public screenWidth: any;
+  public screenHeight: any;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.screenWidth = window.innerWidth;
+    this.screenHeight = window.innerHeight;
+  }
+
   ngOnInit(): void {
+    this.screenWidth = window.innerWidth;
+    this.screenHeight = window.innerHeight;
     this.loading = true;
     this.productService.getAllProducts(8).subscribe(
       (res: any) => {
