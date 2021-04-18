@@ -37,6 +37,9 @@
     margin: 0 auto;
     padding: 24px 16px;
     max-width: calc(350px + 32px); // width of cards + all padding + gap
+    &__loading {
+      text-align: center;
+    }
     &__header {
       margin-bottom: 16px;
       > h2 {
@@ -55,6 +58,15 @@
           cursor: pointer;
         }
       }
+    }
+  }
+  .load-products {
+    text-align: center;
+    padding: 16px 16px 32px;
+    > button {
+      max-width: 341px;
+      height: 44px;
+      width: 100%;
     }
   }
 }

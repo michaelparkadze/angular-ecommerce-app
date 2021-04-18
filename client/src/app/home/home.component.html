@@ -21,7 +21,16 @@
     <div class="products__header">
       <h2>New Products</h2>
     </div>
-    <div *ngIf="loading">loading...</div>
+    <div *ngIf="loading" class="products__loading">
+      <ng-template #indicatorTemplate>
+        <i
+          nz-icon
+          nzType="loading"
+          [ngStyle]="{ 'font-size': '2rem', margin: '0 auto' }"
+        ></i>
+      </ng-template>
+      <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
+    </div>
     <div class="products__list" *ngIf="!loading">
       <app-product-card
         *ngFor="let n of products"
@@ -35,5 +44,14 @@
       >
       </app-product-card>
     </div>
+  </div>
+  <div class="load-products">
+    <button
+      nz-button
+      (click)="showMoreProducts()"
+      [nzLoading]="additionalLoading"
+    >
+      Show more
+    </button>
   </div>
 </div>

@@ -28,6 +28,8 @@ export class HomeComponent implements OnInit {
     },
   ];
   loading = false;
+  productPageCounter = 1;
+  additionalLoading = false;
 
   constructor(
     private productService: ProductService,
@@ -47,16 +49,36 @@ export class HomeComponent implements OnInit {
     this.screenWidth = window.innerWidth;
     this.screenHeight = window.innerHeight;
     this.loading = true;
-    this.productService.getAllProducts(8).subscribe(
-      (res: any) => {
-        console.log(res);
-        this.products = res;
-        this.loading = false;
-      },
-      (err) => {
-        console.log(err);
-        this.loading = false;
-      }
-    );
+    setTimeout(() => {
+      this.productService.getAllProducts(9, this.productPageCounter).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.products = res;
+          this.loading = false;
+        },
+        (err) => {
+          console.log(err);
+          this.loading = false;
+        }
+      );
+    }, 500);
+  }
+
+  showMoreProducts(): void {
+    this.additionalLoading = true;
+    this.productPageCounter = this.productPageCounter + 1;
+    setTimeout(() => {
+      this.productService.getAllProducts(9, this.productPageCounter).subscribe(
+        (res: any) => {
+          console.log(res);
+          this.products = [...this.products, ...res];
+          this.additionalLoading = false;
+        },
+        (err) => {
+          console.log(err);
+          this.additionalLoading = false;
+        }
+      );
+    }, 500);
   }
 }
