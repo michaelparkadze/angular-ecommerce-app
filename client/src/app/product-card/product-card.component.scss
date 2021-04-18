@@ -1,4 +1,6 @@
 .product-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid #ccc;
   border-radius: 12px;
   transition: all 0.2s;
@@ -11,6 +13,7 @@
     }
   }
   &__info {
+    flex-grow: 1;
     padding: 16px 16px 32px;
     > header {
       display: flex;
