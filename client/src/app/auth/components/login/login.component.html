@@ -1,20 +1,38 @@
 <div class="login-container">
   <div class="form-container">
     <h2>Sign In to Eccom</h2>
-    <div class="error-container" *ngIf="error">
-      <span>{{ error }}</span>
-    </div>
+    <nz-alert
+      *ngIf="error"
+      nzShowIcon
+      nzType="error"
+      [nzMessage]="error"
+      [ngStyle]="{ 'margin-bottom': '16px' }"
+    ></nz-alert>
     <form (ngSubmit)="onSubmit()">
       <div class="input-container">
         <label for="email">Email address</label>
-        <input type="email" name="email" [(ngModel)]="email" />
+        <input
+          nz-input
+          type="email"
+          name="email"
+          placeholder="Enter email address"
+          [(ngModel)]="email"
+        />
       </div>
       <div class="input-container">
         <label for="password">Password</label>
-        <input type="password" name="password" [(ngModel)]="password" />
+        <input
+          nz-input
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+        />
       </div>
       <div class="cta-container">
-        <input type="submit" value="Sign in" />
+        <button nz-button type="submit" [disabled]="!canSubmit()">
+          Sign in
+        </button>
       </div>
       <div class="forgot-password">
         <a href="">Forgot password?</a>

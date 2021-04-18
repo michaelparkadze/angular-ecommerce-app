@@ -34,4 +34,8 @@ export class LoginComponent implements OnInit {
         );
     }
   }
+
+  canSubmit(): boolean {
+    return this.email.length > 0 && this.password.length > 0;
+  }
 }

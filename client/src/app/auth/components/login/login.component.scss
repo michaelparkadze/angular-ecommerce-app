@@ -4,7 +4,7 @@
     max-width: 475px;
     padding: 24px 16px;
     margin: 0 auto;
-    border-radius: 12px;
+    border-radius: 3px;
     background-color: #fff;
 
     > h2 {
@@ -23,9 +23,9 @@
         margin-top: 36px;
         margin-bottom: 60px;
         text-align: center;
-        > input[type="submit"] {
-          padding: 16px 30px;
-          border-radius: 50px;
+        > button[type="submit"] {
+          height: 52px;
+          width: 100%;
         }
       }
       .forgot-password {
