@@ -146,8 +146,8 @@
     <nav>
       <ul>
         <li routerLink="/" (click)="toggleMenu()">Home</li>
-        <li routerLink="/profile" (click)="toggleMenu()">Profile</li>
         <li routerLink="/cart" (click)="toggleMenu()">Cart</li>
+        <li routerLink="/profile" (click)="toggleMenu()">Profile</li>
         <li routerLink="/order-history" (click)="toggleMenu()">
           Order History
         </li>
@@ -160,7 +160,7 @@
         (click)="toggleMenu()"
         *ngIf="!isLoggedIn"
       >
-        Login
+        Sign in
       </button>
       <button
         nz-button
@@ -168,10 +168,10 @@
         (click)="toggleMenu()"
         *ngIf="!isLoggedIn"
       >
-        Register
+        Sign up
       </button>
       <button nz-button (click)="logout() && toggleMenu()" *ngIf="isLoggedIn">
-        Log out
+        Sign out
       </button>
     </div>
   </div>
