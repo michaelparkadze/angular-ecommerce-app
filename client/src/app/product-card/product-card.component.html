@@ -8,11 +8,12 @@
         <div class="product-name">{{ title }}</div>
         <div class="product-short-desc">{{ short_desc }}</div>
       </div>
-      <div class="product-price">{{ price }}$</div>
+      <div class="product-price">{{ price | currency: "USD" }}</div>
     </header>
   </div>
   <div class="product-card__cta">
     <button
+      nz-button
       (click)="
         onAdd({ id: id, price: price, quantity: 1, image: image, title: title })
       "

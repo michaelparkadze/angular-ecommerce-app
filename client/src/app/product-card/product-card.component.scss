@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   border: 1px solid #ccc;
-  border-radius: 12px;
+  border-radius: 3px;
   transition: all 0.2s;
+  overflow: hidden;
   &__image {
     > img {
       width: 100%;
       object-fit: cover;
-      border-radius: 12px 12px 0 0;
       border-bottom: 1px solid #ccc;
     }
   }
@@ -21,7 +21,9 @@
       .title {
         flex-grow: 1;
         .product-name {
-          font-size: 1.25rem;
+          padding-right: 12px;
+          font-size: 1.125rem;
+          font-weight: 500;
           text-transform: uppercase;
           margin-bottom: 4px;
         }
@@ -40,14 +42,10 @@
       height: 48px;
       width: 100%;
       border: none;
-      border-radius: 0 0 12px 12px;
       background-color: #fff;
       border-top: 1px solid #ccc;
       cursor: pointer;
       transition: background-color 0.2s;
-      &:hover {
-        background-color: #eee;
-      }
     }
   }
 }
@@ -55,7 +53,7 @@
 @media screen and (min-width: 1024px) {
   .product-card {
     &:hover {
-      transform: scale(1.025);
+      transform: scale(1.0125);
     }
   }
 }
