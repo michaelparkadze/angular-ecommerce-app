@@ -13,6 +13,9 @@ export class CartService {
   cartDataObs$ = new BehaviorSubject(this.cartData);
 
   constructor() {
+    let localCartData = JSON.parse(localStorage.getItem('cart'));
+    if (localCartData) this.cartData = localCartData;
+
     this.cartDataObs$.next(this.cartData);
   }
 
@@ -48,6 +51,7 @@ export class CartService {
 
     this.cartData.total = this.getCartTotal();
     this.cartDataObs$.next({ ...this.cartData });
+    localStorage.setItem('cart', JSON.stringify(this.cartData));
   }
 
   removeProduct(id: number): void {
@@ -56,6 +60,7 @@ export class CartService {
     );
     this.cartData.products = updatedProducts;
     this.cartDataObs$.next({ ...this.cartData });
+    localStorage.setItem('cart', JSON.stringify(this.cartData));
   }
 
   getCartTotal(): number {
