@@ -65,6 +65,8 @@ export class CartService {
     };
 
     this.cartData.products = updatedProducts;
+    this.cartData.total = this.getCartTotal();
+    this.cartDataObs$.next({ ...this.cartData });
     console.log(this.cartData.products);
     localStorage.setItem('cart', JSON.stringify(this.cartData));
   }
@@ -74,6 +76,7 @@ export class CartService {
       (prod) => prod.id !== id
     );
     this.cartData.products = updatedProducts;
+    this.cartData.total = this.getCartTotal();
     this.cartDataObs$.next({ ...this.cartData });
     localStorage.setItem('cart', JSON.stringify(this.cartData));
   }
