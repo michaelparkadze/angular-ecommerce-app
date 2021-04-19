@@ -20,8 +20,8 @@ export class CartService {
   }
 
   addProduct(params): void {
-    const { id, price, quantity, image, title } = params;
-    const product = { id, price, quantity, image, title };
+    const { id, price, quantity, image, title, maxQuantity } = params;
+    const product = { id, price, quantity, image, title, maxQuantity };
 
     if (!this.isProductInCart(id)) {
       if (quantity) this.cartData.products.push(product);
@@ -51,6 +51,21 @@ export class CartService {
 
     this.cartData.total = this.getCartTotal();
     this.cartDataObs$.next({ ...this.cartData });
+    localStorage.setItem('cart', JSON.stringify(this.cartData));
+  }
+
+  updateCart(id: number, quantity: number): void {
+    // copy array, find item index and update
+    let updatedProducts = [...this.cartData.products];
+    let productIndex = updatedProducts.findIndex((prod) => prod.id == id);
+
+    updatedProducts[productIndex] = {
+      ...updatedProducts[productIndex],
+      quantity: quantity,
+    };
+
+    this.cartData.products = updatedProducts;
+    console.log(this.cartData.products);
     localStorage.setItem('cart', JSON.stringify(this.cartData));
   }
 
