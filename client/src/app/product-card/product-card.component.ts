@@ -10,6 +10,7 @@ export class ProductCardComponent implements OnInit {
   @Input() image: string;
   @Input() short_desc: string;
   @Input() category: string;
+  @Input() quantity: number;
   @Input() price: string;
   @Input() id: number;
   @Input() onAdd: any;

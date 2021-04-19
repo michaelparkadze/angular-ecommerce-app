@@ -14,7 +14,15 @@
   <div class="product-card__cta">
     <button
       nz-button
-      (click)="onAdd({ id: id, price: price, image: image, title: title })"
+      (click)="
+        onAdd({
+          id: id,
+          price: price,
+          image: image,
+          title: title,
+          maxQuantity: quantity
+        })
+      "
     >
       Add to cart
     </button>
