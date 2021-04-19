@@ -1,1 +1,63 @@
-<p>cart works!</p>
+<div class="cart-container">
+  <div class="cart-container__empty" *ngIf="cartData.products.length === 0">
+    Your cart is empty.
+  </div>
+  <div class="cart-container__list" *ngIf="cartData.products.length > 0">
+    <header class="list-header">
+      <h2>Cart</h2>
+    </header>
+    <div
+      class="list-item"
+      *ngFor="let product of cartData.products; index as i"
+      [ngStyle]="{ border: i === cartData.products.length - 1 && 'none' }"
+    >
+      <div class="list-item__remove">
+        <i
+          nz-icon
+          nzType="close-square"
+          nzTheme="outline"
+          (click)="removeCartItem(product.id)"
+        ></i>
+      </div>
+      <div class="list-item__image">
+        <img [src]="product.image" alt="" />
+      </div>
+      <div class="list-item__details">
+        <div class="title">{{ product.title }}</div>
+        <div class="price">{{ product.price | currency: "USD" }}</div>
+        <div class="cta">
+          <nz-input-number
+            [(ngModel)]="product.quantity"
+            [nzMin]="product.maxQuantity > 0 ? 1 : 0"
+            [nzMax]="product.maxQuantity > 0 ? product.maxQuantity : 0"
+            [nzStep]="1"
+            (ngModelChange)="updateCart(product.id, product.quantity)"
+          ></nz-input-number>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cart-container__total">
+    <div class="price">
+      <span>
+        <h3>Total amount</h3>
+        <h2>{{ cartData.total | currency: "USD" }}</h2></span
+      >
+      <span>
+        <h3>Total items</h3>
+        <h2>{{ cartData.products.length }}</h2>
+      </span>
+    </div>
+    <div class="cta">
+      <button
+        nz-button
+        nzType="primary"
+        routerLink="/checkout"
+        [disabled]="cartData.products.length === 0"
+      >
+        Checkout
+      </button>
+      <button nz-button routerLink="/">Back to shopping</button>
+    </div>
+  </div>
+</div>
