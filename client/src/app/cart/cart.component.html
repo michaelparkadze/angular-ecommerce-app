@@ -11,13 +11,8 @@
       *ngFor="let product of cartData.products; index as i"
       [ngStyle]="{ border: i === cartData.products.length - 1 && 'none' }"
     >
-      <div class="list-item__remove">
-        <i
-          nz-icon
-          nzType="close-square"
-          nzTheme="outline"
-          (click)="removeCartItem(product.id)"
-        ></i>
+      <div class="list-item__remove" (click)="removeCartItem(product.id)">
+        X
       </div>
       <div class="list-item__image">
         <img [src]="product.image" alt="" />

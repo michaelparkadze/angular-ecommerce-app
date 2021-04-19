@@ -24,6 +24,12 @@
       border-bottom: 1px solid #ccc;
       position: relative;
       &__remove {
+        border: 1px solid #ccc;
+        height: 22px;
+        width: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
         position: absolute;
         right: 8px;
