@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class CartService {
 
   cartDataObs$ = new BehaviorSubject(this.cartData);
 
-  constructor() {
+  constructor(private _notification: NzNotificationService) {
     let localCartData = JSON.parse(localStorage.getItem('cart'));
     if (localCartData) this.cartData = localCartData;
 
@@ -50,6 +51,11 @@ export class CartService {
     }
 
     this.cartData.total = this.getCartTotal();
+    this._notification.create(
+      'success',
+      'Product added to cart',
+      `${title} was successfully added to the cart`
+    );
     this.cartDataObs$.next({ ...this.cartData });
     localStorage.setItem('cart', JSON.stringify(this.cartData));
   }
@@ -79,6 +85,12 @@ export class CartService {
     this.cartData.total = this.getCartTotal();
     this.cartDataObs$.next({ ...this.cartData });
     localStorage.setItem('cart', JSON.stringify(this.cartData));
+
+    this._notification.create(
+      'success',
+      'Removed successfully',
+      'The selected item was removed from the cart successfully'
+    );
   }
 
   getCartTotal(): number {
