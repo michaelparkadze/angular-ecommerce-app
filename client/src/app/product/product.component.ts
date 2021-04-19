@@ -80,6 +80,7 @@ export class ProductComponent implements OnInit {
       quantity: this.quantity,
       image: this.product.image,
       title: this.product.title,
+      maxQuantity: this.product.quantity,
     });
   }
 }
