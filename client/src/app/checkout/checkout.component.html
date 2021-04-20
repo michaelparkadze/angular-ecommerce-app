@@ -1,1 +1,125 @@
-<p>checkout works!</p>
+<div class="checkout-container">
+  <!-- FIRST STEP -->
+  <div *ngIf="currentStep === 1">
+    <div class="billing-container">
+      <h2>Billing Address</h2>
+      <form>
+        <div
+          class="input-container"
+          *ngFor="let field of billingAddress; index as i"
+        >
+          <label for="">{{ field.name }}</label>
+          <input
+            nz-input
+            [type]="field.type"
+            [name]="field.name"
+            [placeholder]="field.placeholder"
+            [(value)]="field.value"
+            [(ngModel)]="field.value"
+          />
+        </div>
+      </form>
+      <button
+        nz-button
+        (click)="submitBilling()"
+        [disabled]="canBillingSubmit()"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+  <!-- SECOND STEP -->
+  <div *ngIf="currentStep === 2">
+    <div class="payment-container">
+      <h2>Payment Details</h2>
+      <form>
+        <div class="input-container">
+          <label for="">Card number</label>
+          <input
+            nz-input
+            type="text"
+            name="cardNumber"
+            [(value)]="cardNumber"
+            [(ngModel)]="cardNumber"
+            placeholder="1234 1234 1234 1234"
+          />
+        </div>
+        <div class="input-container">
+          <label for="">Name on card</label>
+          <input
+            nz-input
+            type="text"
+            name="cardName"
+            [(value)]="cardName"
+            [(ngModel)]="cardName"
+            placeholder="John Doe"
+          />
+        </div>
+        <div class="‼️">
+          <div class="input-container">
+            <label for="">Expiry date</label>
+            <input
+              nz-input
+              type="text"
+              name="cardExpiry"
+              [(value)]="cardExpiry"
+              [(ngModel)]="cardExpiry"
+              placeholder="06/30"
+            />
+          </div>
+          <div class="input-container">
+            <label for="">Security code</label>
+            <input
+              nz-input
+              type="text"
+              name="cardCode"
+              [(value)]="cardCode"
+              [(ngModel)]="cardCode"
+              placeholder="123"
+            />
+          </div>
+        </div>
+      </form>
+      <button
+        nz-button
+        [disabled]="!canPaymentSubmit()"
+        (click)="submitPayment()"
+      >
+        Continue
+      </button>
+    </div>
+  </div>
+  <!-- THIRD STEP -->
+  <div *ngIf="currentStep === 3">
+    <div class="summary-container">
+      <div class="summary-container__order">
+        <h2>Order Summary</h2>
+        <div class="details">
+          <div><span>Item(s)</span> {{ cartData.products.length }}</div>
+          <div><span>Payment method</span> Credit</div>
+          <div>
+            <span>Order total</span> {{ cartData.total | currency: "USD" }}
+          </div>
+        </div>
+        <button nz-button nzType="primary">Place order</button>
+      </div>
+      <div class="summary-container__items">
+        <h2>Order Items</h2>
+        <div class="item-list">
+          <div class="item-container" *ngFor="let item of cartData.products">
+            <div class="item-image">
+              <img [src]="item.image" alt="" />
+            </div>
+            <div class="item-title">
+              {{ item.title }}
+            </div>
+            <div class="item-total">
+              {{ item.price | currency: "USD" }} x {{ item.quantity }} =
+              {{ item.quantity * item.price | currency: "USD" }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
