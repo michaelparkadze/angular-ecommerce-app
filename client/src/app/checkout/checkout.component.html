@@ -1,4 +1,12 @@
 <div class="checkout-container">
+  <div class="progress-container">
+    <nz-progress
+      [nzPercent]="getProgressPrecent()"
+      [nzShowInfo]="false"
+      [nzStrokeWidth]="3"
+    ></nz-progress>
+  </div>
+
   <!-- FIRST STEP -->
   <div *ngIf="currentStep === 1">
     <div class="billing-container">

@@ -41,6 +41,10 @@ export class CheckoutComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  getProgressPrecent() {
+    return (this.currentStep / 4) * 100;
+  }
+
   submitBilling(): void {
     this.nextStep();
   }

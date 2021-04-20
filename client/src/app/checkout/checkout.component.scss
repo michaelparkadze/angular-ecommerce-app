@@ -1,6 +1,14 @@
 .checkout-container {
   padding: 24px 16px;
+  position: relative;
   // First step
+  .progress-container {
+    top: -12px;
+    left: 0px;
+    position: absolute;
+    height: 20px;
+    width: 100%;
+  }
   .billing-container {
     > h2 {
       margin-bottom: 16px;
@@ -107,6 +115,13 @@
 @media screen and (min-width: 1200px) {
   .checkout-container {
     padding: 0;
+    .progress-container {
+      top: -60px;
+      left: 0px;
+      position: absolute;
+      height: 20px;
+      width: 100%;
+    }
     .billing-container {
       padding: 24px 16px;
       max-width: 600px;

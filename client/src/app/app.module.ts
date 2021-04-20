@@ -33,6 +33,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { SwiperModule } from 'swiper/angular';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 registerLocaleData(en);
 
@@ -68,6 +69,7 @@ registerLocaleData(en);
     SwiperModule,
     NzSpinModule,
     NzNotificationModule,
+    NzProgressModule,
   ],
   providers: [
     authInterceptorProviders,
