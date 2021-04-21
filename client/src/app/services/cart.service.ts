@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +14,21 @@ export class CartService {
 
   cartDataObs$ = new BehaviorSubject(this.cartData);
 
-  constructor(private _notification: NzNotificationService) {
+  constructor(
+    private _notification: NzNotificationService,
+    private _api: ApiService
+  ) {
     let localCartData = JSON.parse(localStorage.getItem('cart'));
     if (localCartData) this.cartData = localCartData;
 
     this.cartDataObs$.next(this.cartData);
+  }
+
+  submitCheckout(userId, cart) {
+    return this._api.postTypeRequest('orders/create', {
+      userId: userId,
+      cart: cart,
+    });
   }
 
   addProduct(params): void {
