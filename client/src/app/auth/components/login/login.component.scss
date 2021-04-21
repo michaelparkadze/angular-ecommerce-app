@@ -26,9 +26,14 @@
         > button[type="submit"] {
           height: 52px;
           width: 100%;
+          margin-bottom: 12px;
+        }
+        > div {
+          text-align: left;
         }
       }
       .forgot-password {
+        margin-bottom: 8px;
         text-align: center;
         font-size: 0.85rem;
         > a {
