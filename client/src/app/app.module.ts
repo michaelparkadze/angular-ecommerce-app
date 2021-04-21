@@ -34,6 +34,7 @@ import { SwiperModule } from 'swiper/angular';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzNotificationModule } from 'ng-zorro-antd/notification';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzTableModule } from 'ng-zorro-antd/table';
 
 registerLocaleData(en);
 
@@ -70,6 +71,7 @@ registerLocaleData(en);
     NzSpinModule,
     NzNotificationModule,
     NzProgressModule,
+    NzTableModule,
   ],
   providers: [
     authInterceptorProviders,
