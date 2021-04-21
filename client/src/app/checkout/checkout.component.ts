@@ -15,11 +15,13 @@ export class CheckoutComponent implements OnInit {
   cardExpiry: string;
   cardCode: string;
   cartData: any;
+  products: any;
+  loading = false;
+  successMessage = '';
+  orderId;
 
   constructor(private _auth: AuthService, private _cart: CartService) {
     this._auth.user.subscribe((user) => {
-      console.log(user);
-
       if (user) {
         this.currentUser = user;
         this.billingAddress[0].value = user.full_name;
@@ -27,19 +29,34 @@ export class CheckoutComponent implements OnInit {
       }
     });
 
-    // let localCurrentStep = localStorage.getItem('checkoutStep');
-    // if (!localCurrentStep) {
-    //   this.currentStep = 1;
-    //   localStorage.setItem('checkoutStep', '1');
-    // } else this.currentStep = parseInt(localCurrentStep);
-
     this._cart.cartDataObs$.subscribe((cartData) => {
-      console.log(cartData);
       this.cartData = cartData;
     });
   }
 
   ngOnInit(): void {}
+
+  submitCheckout() {
+    this.loading = true;
+    setTimeout(() => {
+      this._cart
+        .submitCheckout(this.currentUser.user_id, this.cartData)
+        .subscribe(
+          (res: any) => {
+            console.log(res);
+            this.loading = false;
+            this.orderId = res.orderId;
+            this.products = res.products;
+            this.currentStep = 4;
+            this._cart.clearCart();
+          },
+          (err) => {
+            console.log(err);
+            this.loading = false;
+          }
+        );
+    }, 750);
+  }
 
   getProgressPrecent() {
     return (this.currentStep / 4) * 100;
