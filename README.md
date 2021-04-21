@@ -4,6 +4,8 @@ I made this project to learn and understand the basics of both Angular and MySQL
 
 <br/>
 
+![](1.gif)
+
 ## Functionality
 
 The application allows you to browse the home page for products, check out each of the details of the product and add them to your cart for a later checkout.
