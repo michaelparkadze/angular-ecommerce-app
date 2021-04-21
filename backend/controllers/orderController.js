@@ -1,4 +1,20 @@
-const { getOrders, getSingleOrder } = require("../services/orderService");
+const {
+  getOrders,
+  getSingleOrder,
+  createOrder,
+} = require("../services/orderService");
+
+exports.create_order = async (req, res, next) => {
+  const { userId, cart } = req.body;
+  createOrder({ userId, cart })
+    .then((result) => {
+      res.status(result.statusCode).send({ ...result });
+    })
+    .catch((err) => {
+      const { statusCode = 400, message } = err;
+      res.status(statusCode).send({ message }) && next(err);
+    });
+};
 
 exports.get_single_order = async (req, res, next) => {
   const { orderId, userId } = req.query;
