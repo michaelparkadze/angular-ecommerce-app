@@ -5,6 +5,7 @@ I made this project to learn and understand the basics of both Angular and MySQL
 <br/>
 
 ![](1.gif)
+![](2.gif)
 
 ## Functionality
 
