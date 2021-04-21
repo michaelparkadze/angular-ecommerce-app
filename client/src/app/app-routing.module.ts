@@ -21,7 +21,11 @@ const routes: Routes = [
   },
   { path: 'product/:id', component: ProductComponent },
   { path: 'cart', component: CartComponent },
-  { path: 'checkout', component: CheckoutComponent },
+  {
+    path: 'checkout',
+    component: CheckoutComponent,
+    canActivate: [AuthGuardService],
+  },
   {
     path: 'order-history',
     component: OrderHistoryComponent,
