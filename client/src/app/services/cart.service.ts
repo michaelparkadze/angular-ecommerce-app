@@ -104,6 +104,15 @@ export class CartService {
     );
   }
 
+  clearCart(): void {
+    this.cartData = {
+      products: [],
+      total: 0,
+    };
+    this.cartDataObs$.next({ ...this.cartData });
+    localStorage.setItem('cart', JSON.stringify(this.cartData));
+  }
+
   getCartTotal(): number {
     let totalSum = 0;
     this.cartData.products.forEach(
