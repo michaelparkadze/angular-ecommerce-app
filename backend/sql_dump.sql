@@ -34,6 +34,7 @@ CREATE TABLE `addresses` (
   `line2` varchar(255) DEFAULT NULL,
   `city` varchar(45) DEFAULT NULL,
   `state` varchar(45) DEFAULT NULL,
+   `street_name` varchar(45) DEFAULT NULL,
   `country` varchar(45) DEFAULT NULL,
   `phone` varchar(10) DEFAULT NULL,
   `pincode` int(6) DEFAULT NULL,
