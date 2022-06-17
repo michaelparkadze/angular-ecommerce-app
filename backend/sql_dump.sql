@@ -44,7 +44,7 @@ CREATE TABLE `addresses` (
 -- Dumping data for table `addresses`
 --
 
-INSERT INTO `addresses` (`id`, `line1`, `line2`, `city`, `state`, `country`, `phone`, `pincode`, `user_id`) VALUES
+INSERT INTO `addresses` (`id`, `line1`, `line2`, `state`, `city`, `street_name`, `country`, `phone`, `pincode`, `user_id`) VALUES
 (1, 'Test Address', 'Test Address', 'Rheinland-Pfalz', 'Heiligenroth', 'Stuttgarter Platz 10', 'Germany', '9855698981', 110045, 1),
 (2, 'Test Address 2', 'Test Address 2', 'Rheinland-Pfalz', 'Heiligenroth', ' Stuttgarter Platz 3', 'Germany', '9855698981', 560100, 1);
 
