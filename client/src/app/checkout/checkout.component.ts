@@ -24,7 +24,7 @@ export class CheckoutComponent implements OnInit {
     this._auth.user.subscribe((user) => {
       if (user) {
         this.currentUser = user;
-        this.billingAddress[0].value = user.full_name;
+        this.billingAddress[0].value = user.fname;
         this.billingAddress[1].value = user.email;
       }
     });
