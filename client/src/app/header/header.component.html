@@ -1,14 +1,130 @@
 <header class="header-container">
   <div class="header-container__left">
-    <button (click)="onClickFunc()">Menu</button>
+    <button
+      nz-button
+      nzType="text"
+      size="large"
+      (click)="toggleMenu()"
+      nzShape="circle"
+      nzSize="large"
+    >
+      <i
+        nz-icon
+        nzType="menu"
+        [ngStyle]="{ 'font-size': '1.25rem', 'padding-top': '6px' }"
+      ></i>
+    </button>
   </div>
-  <div class="header-container__middle">Eccom</div>
+  <div class="header-container__middle">
+    <h3 routerLink="/">Eccom</h3>
+  </div>
   <div class="header-container__right">
-    <button>User</button>
+    <ng-container>
+      <div class="cart-counter">{{ cartData.products.length }}</div>
+      <button
+        nz-button
+        nz-dropdown
+        nzType="text"
+        nzTrigger="click"
+        nzPlacement="right"
+        nzShape="circle"
+        nzSize="large"
+        [nzDropdownMenu]="menu"
+        [nzVisible]="dropdownVisible"
+        (nzVisibleChange)="toggleDropdown()"
+      >
+        <i
+          nz-icon
+          nzType="shopping-cart"
+          [ngStyle]="{ fontSize: '24px', paddingTop: '3px' }"
+        ></i>
+      </button>
+      <nz-dropdown-menu #menu="nzDropdownMenu">
+        <div class="cart-dropdown">
+          <div
+            class="cart-dropdown__empty"
+            *ngIf="cartData.products.length === 0"
+          >
+            Your cart is empty.
+          </div>
+          <div
+            class="cart-dropdown__content"
+            *ngIf="cartData.products.length !== 0"
+          >
+            <div class="product-list">
+              <div
+                class="product-list__item"
+                *ngFor="let product of cartData.products; index as i"
+                [ngStyle]="{
+                  'border-bottom':
+                    i !== cartData.products.length - 1 && '1px solid #ccc'
+                }"
+              >
+                <div class="product-item">
+                  <div
+                    class="product-item__remove"
+                    (click)="removeProductFromCart(product.id)"
+                  >
+                    X
+                  </div>
+                  <div class="product-item__image">
+                    <img [src]="product.image" alt="" />
+                  </div>
+                  <div class="product-item__description">
+                    <div class="product-name">{{ product.title }}</div>
+                    <div class="product-amount">
+                      {{ product.quantity }} x
+                      <span>{{ product.price | currency: "USD" }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="cart-info">
+              <div class="selected-amount">
+                {{ cartData.products.length }} Item(s) selected
+              </div>
+              <div class="total-price">
+                Total: {{ cartData.total | currency: "USD" }}
+              </div>
+            </div>
+            <div class="cart-cta">
+              <button
+                nz-button
+                nzSize="large"
+                routerLink="/cart"
+                (click)="toggleDropdown()"
+                [ngStyle]="{
+                  borderLeft: 'none',
+                  borderRight: 'none',
+                  borderBottom: 'none'
+                }"
+              >
+                View cart
+              </button>
+              <button
+                nz-button
+                nzType="primary"
+                nzSize="large"
+                routerLink="/checkout"
+                (click)="toggleDropdown()"
+                [ngStyle]="{
+                  borderLeft: 'none',
+                  borderRight: 'none',
+                  borderBottom: 'none'
+                }"
+              >
+                Checkout
+              </button>
+            </div>
+          </div>
+        </div>
+      </nz-dropdown-menu>
+    </ng-container>
   </div>
 </header>
 
-<div class="nav-container" *ngIf="!isMobile">
+<!-- <div class="nav-container" *ngIf="!isMobile">
   <nav>
     <ul>
       <li routerLink="/">Home</li>
@@ -21,25 +137,47 @@
       <li routerLink="/order-history">Order History</li>
     </ul>
   </nav>
-</div>
+</div> -->
 
 <div [className]="isMenuOpen ? 'side-menu show' : 'side-menu'">
-  <h2>Example menu</h2>
-  <nav>
-    <ul>
-      <li routerLink="/" (click)="onClickFunc()">Home</li>
-      <li routerLink="/login" (click)="onClickFunc()">Login</li>
-      <li routerLink="/register" (click)="onClickFunc()">Register</li>
-      <li routerLink="/profile" (click)="onClickFunc()">Profile</li>
-      <li routerLink="/cart" (click)="onClickFunc()">Cart</li>
-      <li routerLink="/product/1" (click)="onClickFunc()">Product</li>
-      <li routerLink="/checkout" (click)="onClickFunc()">Checkout</li>
-      <li routerLink="/order-history" (click)="onClickFunc()">Order History</li>
-    </ul>
-  </nav>
+  <i nz-icon nzType="close" nzTheme="outline" (click)="toggleMenu()"></i>
+  <div class="side-menu__content">
+    <h2 routerLink="/" (click)="toggleMenu()">Eccom</h2>
+    <nav>
+      <ul>
+        <li routerLink="/" (click)="toggleMenu()">Home</li>
+        <li routerLink="/cart" (click)="toggleMenu()">Cart</li>
+        <li routerLink="/profile" (click)="toggleMenu()">Profile</li>
+        <li routerLink="/order-history" (click)="toggleMenu()">
+          Order History
+        </li>
+      </ul>
+    </nav>
+    <div class="🍑">
+      <button
+        nz-button
+        routerLink="/login"
+        (click)="toggleMenu()"
+        *ngIf="!isLoggedIn"
+      >
+        Sign in
+      </button>
+      <button
+        nz-button
+        routerLink="/register"
+        (click)="toggleMenu()"
+        *ngIf="!isLoggedIn"
+      >
+        Sign up
+      </button>
+      <button nz-button (click)="logout() && toggleMenu()" *ngIf="isLoggedIn">
+        Sign out
+      </button>
+    </div>
+  </div>
 </div>
 
 <div
   [className]="isMenuOpen ? 'darken-background enable' : 'darken-background'"
-  (click)="onClickFunc()"
+  (click)="toggleMenu()"
 ></div>

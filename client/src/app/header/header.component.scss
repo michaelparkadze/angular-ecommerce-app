@@ -1,5 +1,6 @@
 .header-container {
-  height: 72px;
+  height: 60px;
+  padding: 0 16px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #ccc;
@@ -10,34 +11,114 @@
     align-items: center;
   }
   &__left {
-    > button {
-      width: 72px;
-      height: 100%;
-      background-color: transparent;
-      border: none;
-      border-right: 1px solid #ccc;
-      transition: all 0.2s ease;
-      &:hover {
-        background-color: rgb(231, 231, 231);
-        cursor: pointer;
-      }
-    }
   }
   &__middle {
     flex-grow: 1;
     text-align: center;
+    > h3 {
+    }
   }
   &__right {
-    > button {
-      width: 72px;
-      height: 100%;
-      background-color: transparent;
-      border: none;
-      border-left: 1px solid #ccc;
-      transition: all 0.2s ease;
-      &:hover {
-        background-color: rgb(231, 231, 231);
-        cursor: pointer;
+    position: relative;
+    .cart-counter {
+      color: #fff;
+      background-color: red;
+      width: 17px;
+      height: 17px;
+      font-size: 11px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50px;
+      position: absolute;
+      right: 0px;
+      top: 12px;
+      z-index: 2;
+    }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .header-container {
+    padding: 0 24px;
+  }
+}
+
+// Cart Dropdown
+.cart-dropdown {
+  max-width: 280px;
+  min-width: 280px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  &__empty {
+    padding: 12px;
+    text-align: center;
+    font-weight: 500;
+  }
+  &__content {
+    padding-top: 12px;
+    .product-list {
+      padding: 0 12px;
+      max-height: 180px;
+      overflow-y: auto;
+      border-bottom: 1px solid #ccc;
+      &__item {
+        padding: 12px 0;
+        margin-bottom: 12px;
+        cursor: default;
+        .product-item {
+          display: flex;
+          position: relative;
+          align-items: center;
+          &__remove {
+            top: 4px;
+            right: 0px;
+            position: absolute;
+            border: 1px solid #ccc;
+            height: 22px;
+            width: 22px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+          }
+          &__image {
+            > img {
+              height: 72px;
+              width: 72px;
+              object-fit: contain;
+            }
+          }
+          &__description {
+            margin-left: 12px;
+            padding-right: 24px;
+            .product-name {
+              font-size: 1.125rem;
+            }
+            .product-amount {
+              > span {
+                font-weight: 500;
+              }
+            }
+          }
+        }
+      }
+    }
+    .cart-info {
+      padding: 16px;
+      .selected-amount {
+        font-size: 0.875rem;
+      }
+      .total-price {
+        font-size: 1.25rem;
+        font-weight: 500;
+      }
+    }
+    .cart-cta {
+      display: flex;
+      flex-direction: row;
+      > button {
+        width: 100%;
       }
     }
   }
@@ -58,23 +139,68 @@
   }
 }
 
+// Side Menu Styles
+
 .side-menu {
   width: 285px;
   height: 100vh;
   position: fixed;
   top: 0px;
-  padding: 16px;
+  padding: 56px 0px 24px;
   transform: translateX(-285px);
   background-color: #fff;
   border-right: 1px solid #ccc;
   transition: all 0.35s ease;
   z-index: 10002;
-  > nav {
-    > ul {
-      > li {
-        padding: 8px 0;
-        margin-bottom: 12px;
-        cursor: pointer;
+  > i {
+    top: 24px;
+    right: 24px;
+    position: absolute;
+    font-size: 1.25rem;
+    cursor: pointer;
+  }
+  &__content {
+    height: 100%;
+    position: relative;
+    > h2 {
+      padding-left: 24px;
+      margin-bottom: 24px;
+      outline: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+      &:hover {
+        transform: translateX(16px);
+      }
+    }
+    > nav {
+      > ul {
+        > li {
+          outline: none;
+          padding: 8px 0 8px 24px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          transition: background-color 0.2s;
+          &:hover {
+            background-color: rgb(236, 236, 236);
+          }
+        }
+      }
+    }
+    .🍑 {
+      position: absolute;
+      bottom: 0;
+      left: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      > button {
+        margin-bottom: 8px;
+        height: 44px;
+        width: 236px;
+        flex-grow: 1;
+        border: 1px solid #ccc;
+        background: transparent;
       }
     }
   }

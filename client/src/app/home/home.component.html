@@ -1,11 +1,58 @@
 <div class="home-container">
-  <carousel
-    [images]="images"
-    [cellWidth]="'100%'"
-    [autoplay]="true"
-    [dots]="true"
-    [arrows]="false"
-    [transitionDuration]="400"
-  >
-  </carousel>
+  <div class="categories">
+    <div class="categories__header">
+      <h2>Categories</h2>
+    </div>
+    <div class="categories__list">
+      <swiper
+        [zoom]="false"
+        [slidesPerView]="screenWidth > 1200 ? 3 : 1"
+        [spaceBetween]="50"
+        [pagination]="true"
+        [loop]="true"
+      >
+        <ng-template swiperSlide *ngFor="let c of categories">
+          <div class="category-card">{{ c.name }}</div>
+        </ng-template>
+      </swiper>
+    </div>
+  </div>
+  <div class="products">
+    <div class="products__header">
+      <h2>New Products</h2>
+    </div>
+    <div *ngIf="loading" class="products__loading">
+      <ng-template #indicatorTemplate>
+        <i
+          nz-icon
+          nzType="loading"
+          [ngStyle]="{ 'font-size': '2rem', margin: '0 auto' }"
+        ></i>
+      </ng-template>
+      <nz-spin nzSimple [nzIndicator]="indicatorTemplate"> </nz-spin>
+    </div>
+    <div class="products__list" *ngIf="!loading">
+      <app-product-card
+        *ngFor="let n of products"
+        [id]="n.id"
+        [title]="n.title"
+        [image]="n.image"
+        [price]="n.price"
+        [short_desc]="n.short_desc"
+        [category]="n.category"
+        [quantity]="n.quantity"
+        [onAdd]="cartService.addProduct.bind(cartService)"
+      >
+      </app-product-card>
+    </div>
+  </div>
+  <div class="load-products">
+    <button
+      nz-button
+      (click)="showMoreProducts()"
+      [nzLoading]="additionalLoading"
+    >
+      Show more
+    </button>
+  </div>
 </div>

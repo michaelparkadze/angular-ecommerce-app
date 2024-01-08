@@ -1,0 +1,80 @@
+<div class="register-container">
+  <div class="form-container">
+    <h2>Sign Up to Eccom</h2>
+    <nz-alert
+      *ngIf="errorMessage"
+      nzShowIcon
+      nzType="error"
+      [nzMessage]="errorMessage"
+      [ngStyle]="{ 'margin-bottom': '16px' }"
+    ></nz-alert>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
+      <div class="input-container">
+        <label for="fullName">Full name</label>
+        <input
+          nz-input
+          type="text"
+          name="fullName"
+          [(ngModel)]="fullName"
+          placeholder="Enter your full name"
+        />
+      </div>
+      <div class="input-container">
+        <label for="email">Email address</label>
+        <input
+          nz-input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Enter your email address"
+        />
+      </div>
+      <div class="🤪">
+        <div class="input-container">
+          <label for="password">Password</label>
+          <input
+            nz-input
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            placeholder="Enter a strong password"
+          />
+        </div>
+        <div class="input-container">
+          <label for="confirmPassword">Confirm password</label>
+          <input
+            nz-input
+            type="password"
+            name="confirmPassword"
+            [(ngModel)]="confirmPassword"
+            placeholder="Repeat your password"
+          />
+        </div>
+      </div>
+      <div class="✅">
+        <div class="checkbox-container">
+          <input nz-input type="checkbox" />
+          <span>I agree to receive instructional and promotional emails</span>
+        </div>
+        <div class="checkbox-container">
+          <input nz-input type="checkbox" />
+          <span> I agree to Eccom's Terms of Use & Privacy Policy</span>
+        </div>
+      </div>
+      <div class="cta-container">
+        <!-- <input type="submit" value="Sign up" /> -->
+        <button
+          nz-button
+          type="submit"
+          [disabled]="!canSubmit()"
+          [nzLoading]="loading"
+        >
+          Sign up
+        </button>
+        <div>
+          <div><a routerLink="/login">Sign in with an existing user</a></div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

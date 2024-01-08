@@ -1,25 +1,33 @@
 <div class="profile-container">
   <div class="form-container">
     <h2>Profile</h2>
-    <form>
-      <div class="input-container">
-        <label for="fullName">Full name</label>
-        <input type="text" name="fullName" />
-      </div>
-      <div class="input-container">
-        <label for="email">Email address</label>
-        <input type="email" name="email" />
-      </div>
-      <div class="input-container">
-        <label for="password">Password</label>
-        <input type="password" name="password" />
-      </div>
-      <div class="input-container">
-        <label for="confirmPassword">Confirm password</label>
-        <input type="password" name="confirmPassword" />
+    <nz-alert
+      [nzType]="alertType"
+      nzShowIcon
+      [nzMessage]="alertMessage"
+      [ngStyle]="{ marginBottom: '12px' }"
+      *ngIf="alertVisible"
+    ></nz-alert>
+    <form (ngSubmit)="onSubmit()">
+      <div class="input-container" *ngFor="let field of user">
+        <label for="field.key">{{ field.label }}</label>
+        <input
+          nz-input
+          [name]="field.key"
+          [type]="field.type"
+          [(value)]="field.value"
+          [(ngModel)]="field.value"
+        />
       </div>
       <div class="cta-container">
-        <button>Update</button>
+        <button
+          nz-button
+          type="submit"
+          [nzLoading]="loading"
+          [disabled]="canUpdate()"
+        >
+          Update
+        </button>
       </div>
     </form>
   </div>

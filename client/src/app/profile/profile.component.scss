@@ -24,7 +24,7 @@
       .cta-container {
         margin-top: 24px;
         > button {
-          padding: 16px 30px;
+          height: 52px;
           width: 100%;
         }
       }
@@ -34,7 +34,7 @@
 
 @media screen and (min-width: 768px) {
   .profile-container {
-    padding: 90px 16px 240px;
+    padding: 48px 16px 240px;
     .form-container {
       padding: 36px;
       border: 1px solid #ccc;

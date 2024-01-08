@@ -1,0 +1,49 @@
+<div class="login-container">
+  <div class="form-container">
+    <h2>Sign In to Eccom</h2>
+    <nz-alert
+      *ngIf="error"
+      nzShowIcon
+      nzType="error"
+      [nzMessage]="error"
+      [ngStyle]="{ 'margin-bottom': '16px' }"
+    ></nz-alert>
+    <form (ngSubmit)="onSubmit()">
+      <div class="input-container">
+        <label for="email">Email address</label>
+        <input
+          nz-input
+          type="email"
+          name="email"
+          placeholder="Enter email address"
+          [(ngModel)]="email"
+        />
+      </div>
+      <div class="input-container">
+        <label for="password">Password</label>
+        <input
+          nz-input
+          type="password"
+          name="password"
+          placeholder="Enter your password"
+          [(ngModel)]="password"
+        />
+      </div>
+      <div class="cta-container">
+        <button
+          nz-button
+          type="submit"
+          [disabled]="!canSubmit()"
+          [nzLoading]="loading"
+        >
+          Sign in
+        </button>
+        <div><a routerLink="/register">Create a new account</a></div>
+      </div>
+
+      <div class="forgot-password">
+        <a href="">Forgot password?</a>
+      </div>
+    </form>
+  </div>
+</div>

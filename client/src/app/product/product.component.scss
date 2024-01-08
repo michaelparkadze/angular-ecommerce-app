@@ -1,0 +1,103 @@
+.product-container {
+  padding-bottom: 60px;
+  &__image {
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  &__details {
+    margin: 0 auto;
+    max-width: 1024px;
+    padding: 16px;
+    .title {
+      font-size: 1.5rem;
+      line-height: 1.25;
+      margin-bottom: 6px;
+    }
+    .reviews {
+      display: flex;
+      align-items: center;
+      margin-bottom: 4px;
+      .rating {
+        margin-right: 12px;
+        > i {
+          margin-right: 2px;
+          font-size: 1rem;
+          color: #aaa;
+          cursor: pointer;
+          &:nth-child(n + 1):nth-child(-n + 4) {
+            color: #f9d71c;
+          }
+        }
+      }
+      .review-link {
+        color: #525252;
+        font-size: 0.75rem;
+      }
+    }
+    .price-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+      .price {
+        font-size: 1.75rem;
+        margin-right: 12px;
+      }
+      .availability {
+        font-size: 1rem;
+        text-transform: uppercase;
+      }
+    }
+    .description {
+      margin-bottom: 20px;
+    }
+    .cta {
+      .add-to-cart {
+        display: flex;
+        align-items: center;
+        margin-bottom: 40px;
+        > span {
+          margin-right: 4px;
+        }
+        > button {
+          height: 46px;
+          margin-left: 12px;
+          border-radius: 50px;
+        }
+      }
+      .category {
+        text-transform: uppercase;
+        margin-bottom: 16px;
+        > span {
+          margin-right: 6px;
+        }
+      }
+      .social-links {
+        text-transform: uppercase;
+        > span {
+          margin-right: 6px;
+        }
+        > i {
+          font-size: 1rem;
+          margin: 0 8px;
+          cursor: pointer;
+          transition: color 0.2s;
+          &:hover {
+            color: #1890ff;
+          }
+        }
+      }
+    }
+  }
+}
+
+// @media screen and (min-width: 1200px) {
+//   .product-container {
+//     padding-bottom: 60px;
+//     &__image {
+//       margin-bottom: 24px;
+//       text-align: center;
+//     }
+//     &__details {
+//     }
+//   }
+// }
